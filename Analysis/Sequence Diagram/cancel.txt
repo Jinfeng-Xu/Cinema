@@ -1,0 +1,25 @@
+actor Customer
+control CustomerSystem
+entity Order
+
+Customer>CustomerSystem: selectedOrder()
+activate CustomerSystem
+
+CustomerSystem>Order(current): getOrder()
+activate Order(current)
+
+Order(current)>CustomerSystem: return
+deactivate Order(current)
+
+CustomerSystem>Customer: return
+deactivate Order(current)
+
+Customer>CustomerSystem: cancelSelected()
+activate CustomerSystem
+
+CustomerSystem>Order(selected)
+(selected): <<destroy>>
+destroy Order(selected)
+
+CustomerSystem>Customer: return null
+deactivate Customer

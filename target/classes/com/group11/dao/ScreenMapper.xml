@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--绑定一个对应的Mapper/Dao接口-->
+<mapper namespace="com.group11.dao.ScreenMapper">
+
+    <select id="getScreen" resultType="Screen">
+        select * from screen
+    </select>
+
+    <select id="getScreenById" resultType="Screen">
+        select * from screen where id = #{id}
+    </select>
+
+    <insert id="addScreen" parameterType="Screen">
+        insert into screen(id, type) values (#{id}, #{type})
+    </insert>
+
+    <select id="getScreenByTimeTableId" resultType="Screen">
+        select screen.* from screen, timetable where timetable.id = #{tid} and timetable.screenId = screen.id
+    </select>
+
+</mapper>

@@ -1,0 +1,15 @@
+actor Customer
+control CustomerSystem
+entity Order(current)
+
+Customer>CustomerSystem: viewOrder()
+activate CustomerSystem
+
+CustomerSystem>Order(current): getOrder()
+activate Order(current)
+
+Order(current)>CustomerSystem: return
+deactivate Order(current)
+
+CustomerSystem>Customer: return
+deactivate CustomerSystem

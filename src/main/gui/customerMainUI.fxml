@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group11.controller.CustomerMainController">
+   <children>
+      <Label layoutX="153.0" layoutY="48.0" prefHeight="50.0" prefWidth="295.0" text="Welcome to our Booking System!" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="49.0" layoutY="107.0" prefHeight="32.0" prefWidth="91.0" text="User Name:" />
+      <Label fx:id="userNameLabel" layoutX="145.0" layoutY="107.0" prefHeight="32.0" prefWidth="80.0" text="Label" />
+      <Label layoutX="49.0" layoutY="158.0" prefHeight="32.0" prefWidth="80.0" text="User Role:" />
+      <Label fx:id="userRoleLabel" layoutX="145.0" layoutY="158.0" prefHeight="32.0" prefWidth="80.0" text="Label" />
+      <Button fx:id="purchaseTicketsBtn" layoutX="285.0" layoutY="190.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="240.0" text="Purchase Tickets" />
+      <Button fx:id="checkBillsBtn" layoutX="285.0" layoutY="272.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="240.0" text="Check Bills" />
+      <Button fx:id="backBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="55.0" text="BACK" />
+      <Button fx:id="resetPasswordBtn" layoutX="451.0" layoutY="19.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="129.0" text="reset password" />
+   </children>
+</AnchorPane>

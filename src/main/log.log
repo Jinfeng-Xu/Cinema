@@ -1,0 +1,12 @@
+[2021-12-09 15:40:42] Test for logUtils
+[2021-12-09 17:50:09] 111111 loginfailed
+[2021-12-09 17:50:16] 111111 login as customer
+[2021-12-09 18:04:09] 111111 login as customer
+[2021-12-09 18:35:23] 111111 login as customer
+[2021-12-09 19:09:29] 111111 loginfailed
+[2021-12-09 19:09:33] 1111111 loginfailed
+[2021-12-09 19:09:37] 1111111 login as administrator
+[2021-12-09 19:10:24] 123test register failed
+[2021-12-09 19:10:31] 123test register failed
+[2021-12-09 19:10:44] 222122 register failed
+[2021-12-09 19:11:38] 1234561 register as customer

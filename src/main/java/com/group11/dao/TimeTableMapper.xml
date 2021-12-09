@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--绑定一个对应的Mapper/Dao接口-->
+<mapper namespace="com.group11.dao.TimeTableMapper">
+    <select id="getTimeTable" resultType="TimeTable">
+        select * from timetable where startTime >= #{time}
+    </select>
+
+    <select id="getTimeTableById" resultType="TimeTable">
+        select * from timetable where id = #{id}
+    </select>
+
+    <insert id="addTimeTable" parameterType="TimeTable">
+        insert into timetable(id, startTime, filmId, screenId, price) values (#{id}, #{startTime}, #{filmId}, #{screenId}, #{price})
+    </insert>
+
+    <delete id="deleteTimeTable" parameterType="String">
+        delete from timetable where id = #{id}
+    </delete>
+
+</mapper>

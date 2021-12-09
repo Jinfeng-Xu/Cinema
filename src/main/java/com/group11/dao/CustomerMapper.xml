@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--绑定一个对应的Mapper/Dao接口-->
+<mapper namespace="com.group11.dao.CustomerMapper">
+    <select id="getCustomerById" resultType="Customer">
+        select * from customer where id = #{id}
+    </select>
+
+    <select id="getCustomer" resultType="Customer">
+        select * from customer
+    </select>
+
+    <select id="getCustomerByUserName" resultType="Customer">
+        select * from customer where username = #{username}
+    </select>
+
+    <insert id="addCustomer" parameterType="Customer">
+        insert into customer (id, username, password) values (#{id}, #{username}, #{password})
+    </insert>
+
+    <update id="updateCustomerPassword" parameterType="Customer">
+        update customer set password = #{password} where id = #{id}
+    </update>
+
+
+</mapper>

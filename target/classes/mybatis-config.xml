@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!--    引入外部配置文件-->
+    <properties resource="db.properties">
+    </properties>
+     
+    <settings>
+<!--        标准日志工厂实现-->
+<!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
+<!--        LOG4j日志实现-->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+<!--    给实体类起别名-->
+    <typeAliases>
+        <typeAlias type="com.group11.pojo.Customer" alias="Customer"/>
+        <typeAlias type="com.group11.pojo.Administrator" alias="Administrator"/>
+        <typeAlias type="com.group11.pojo.Film" alias="Film"/>
+        <typeAlias type="com.group11.pojo.Seat" alias="Seat"/>
+        <typeAlias type="com.group11.pojo.Screen" alias="Screen"/>
+        <typeAlias type="com.group11.pojo.TimeTable" alias="TimeTable"/>
+        <typeAlias type="com.group11.pojo.Bill" alias="Bill"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/group11/dao/CustomerMapper.xml"/>
+        <mapper resource="com/group11/dao/AdministratorMapper.xml"/>
+        <mapper resource="com/group11/dao/FilmMapper.xml"/>
+        <mapper resource="com/group11/dao/SeatMapper.xml"/>
+        <mapper resource="com/group11/dao/ScreenMapper.xml"/>
+        <mapper resource="com/group11/dao/TimeTableMapper.xml"/>
+        <mapper resource="com/group11/dao/BillMapper.xml"/>
+    </mappers>
+</configuration>

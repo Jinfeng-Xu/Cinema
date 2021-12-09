@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="backBtn" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="55.0" text="BACK" />
+      <TextField fx:id="releaseTimeTextField" layoutX="442.0" layoutY="295.0" prefHeight="30.0" prefWidth="109.0" />
+      <TextField fx:id="protagonistTextField" layoutX="442.0" layoutY="242.0" prefHeight="30.0" prefWidth="109.0" />
+      <TextField fx:id="directorTextField" layoutX="442.0" layoutY="190.0" prefHeight="30.0" prefWidth="109.0" />
+      <TextField fx:id="durationTextField" layoutX="442.0" layoutY="135.0" prefHeight="30.0" prefWidth="109.0" />
+      <TextField fx:id="filmInformationTextField" layoutX="442.0" layoutY="349.0" prefHeight="30.0" prefWidth="109.0" />
+      <TextField fx:id="nameTextField" layoutX="442.0" layoutY="82.0" prefHeight="30.0" prefWidth="109.0" />
+      <Label layoutX="311.0" layoutY="354.0" text="Film Information:" />
+      <Label layoutX="310.0" layoutY="300.0" text="Release Time:" />
+      <Label layoutX="310.0" layoutY="247.0" text="Protagonist:" />
+      <Label layoutX="310.0" layoutY="195.0" text="Director:" />
+      <Label layoutX="310.0" layoutY="140.0" text="Duration:" />
+      <Label layoutX="310.0" layoutY="87.0" text="Name:" />
+      <ImageView fx:id="postImageView" fitHeight="250.0" fitWidth="198.0" layoutX="61.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="post" layoutX="141.0" layoutY="83.0" style="-fx-font-size: 18;" text="Post" />
+      <Label fx:id="film" layoutX="286.0" layoutY="35.0" style="-fx-font-size: 24;" text="Film" />
+   </children>
+</AnchorPane>

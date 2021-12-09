@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--绑定一个对应的Mapper/Dao接口-->
+<mapper namespace="com.group11.dao.SeatMapper">
+    <select id="getSeatByTimeTableId" resultType="Seat">
+        select * from seat where timeTableId = #{timeTableId}
+    </select>
+
+    <select id="getSeatById" resultType="Seat">
+        select * from seat where id = #{id}
+    </select>
+
+    <update id="changeSeatStatus" parameterType="Seat">
+        update seat set isEmpty = #{isEmpty} where id = #{id}
+    </update>
+
+    <insert id="addSeat" parameterType="Seat">
+        insert into seat(id, seatRow, seatColumn, isEmpty, timeTableId) values (#{id}, #{seatRow}, #{seatColumn}, #{isEmpty}, #{timeTableId})
+    </insert>
+
+</mapper>

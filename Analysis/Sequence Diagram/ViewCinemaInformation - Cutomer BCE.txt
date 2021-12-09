@@ -1,0 +1,34 @@
+actor Cutomer
+control CustomerSystem
+entity Timetable, Film, Screen, Seat
+
+Customer -> CustomerSystem: ViewCinemaInformation()
+activate CustmerSystem
+
+CustomerSystem -> Timetable(current): *getTimeTable()
+activate Timetable
+
+Timatable(current) -> Film(current): *getFilm()
+activate Film
+Film(current) -> Timatable(current): return
+deactivate Film
+
+Timatable(current) -> Screen(current): *getScreen()
+activate Screen
+
+Screen(current) -> Seat(current): *getSeat()
+activate Seat
+Seat(current) -> Screen(current): return
+deactivate Seat
+
+Screen(current) -> Timatable(current): return
+deactivate Screen
+
+Timetable -> CustomerSystem: return
+deactivate Timetable
+
+CustomerSystem -> Customer: return
+deactivate CustomerSystem 
+
+
+

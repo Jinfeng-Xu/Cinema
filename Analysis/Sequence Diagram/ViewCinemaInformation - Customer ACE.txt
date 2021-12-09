@@ -1,0 +1,17 @@
+actor Cutomer
+control CustomerSystem
+entity Timetable
+
+Customer -> CustomerSystem: ViewCinemaInformation()
+activate CustmerSystem
+
+Customer -> Timetable(current): *getTimeTable()
+activate Timetable
+Timetable(current) -> CustomerSystem: return null
+deactivate Timetable
+
+CustomerSystem -> Customer: return
+deactivate CustomerSystem
+
+
+

@@ -1,0 +1,34 @@
+actor Administrator
+control AdministratorSystem
+entity Timetable, Film
+
+Administrator -> AdministratorSystem: ViewCinemaInformation()
+activate AdministratorSystem
+
+AdministratorSystem -> Film(current): *getFilm()
+activate Film
+Film -> AdministratorSystem: return
+deactivate Film
+
+AdministratorSystem -> Timetable: *getTimeTable()
+activate TimeTable
+Timetable -> AdministratorSystem: return
+deactivate Timetable
+
+
+AdministratorSystem -> Administrator: return
+deactivate AdministratorSystem
+
+
+Administrator -> AdministratorSystem: addFilm()
+activate AdministratorSystem
+
+AdministratorSystem -> Film(current): *addFilm(poster, name, duration, director, protagonist, releaseTime, info)
+activate Film
+Film(current) -> AdministratorSystem: return
+deactivate Film
+
+
+AdministratorSystem -> Administrator: return
+deactivate AdministratorSystem
+

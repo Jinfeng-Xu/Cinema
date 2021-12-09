@@ -1,0 +1,43 @@
+actor Administrator
+control AdministratorSystem
+entity Timetable, Film， Screen, Seat, TimeTable
+
+Administrator -> AdministratorSystem: SelectedTimeTable()
+activate AdministratorSystem
+
+AdministratorSystem -> Film(current): *getFilm()
+activate Film
+Film(current) -> AdministratorSystem: return
+deactivate Film
+
+AdministratorSystem -> Screen(current): *getScreen()
+activate Screen
+Screen -> AdministratorSystem: return
+deactivate Screen
+
+AdministratorSystem -> Seat(current): *getSeat()
+activate Film
+Film -> AdministratorSystem: return
+deactivate Film
+
+AdministratorSystem -> Timetable: *getTimeTable()
+activate TimeTable
+Timetable -> AdministratorSystem: return
+deactivate Timetable
+
+
+AdministratorSystem -> Administrator: return
+deactivate AdministratorSystem
+
+
+Administrator -> AdministratorSystem: updateSelected()
+activate AdministratorSystem
+
+AdministratorSystem -> TimeTable(selected): *setTimetable()
+activate TimeTable
+
+deactivate TimeTable
+
+AdministratorSystem -> Administrator: return
+deactivate AdministratorSystem
+

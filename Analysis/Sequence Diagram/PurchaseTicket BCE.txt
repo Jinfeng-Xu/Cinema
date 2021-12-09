@@ -1,0 +1,52 @@
+actor Customer
+control CustomerSystem
+entity Timetable, Film, Order, Screen, Seat
+
+Customer->CustomerSystem:purchaseTickets()
+activate CustomerSystem
+
+CustomerSystem->Timetable(current):getTimetable()
+activate Timetable(current)
+
+Timetable(current)->Film(current):*getFilm()
+activate Film(current)
+Film(current)->Timetable(current):return
+deactivate Film(current)
+
+Timetable(current)->Screen(current):*getScreen()
+activate Screen(current)
+
+Screen(current)->Seat(current):*getSeat()
+activate Seat(current)
+
+Seat(current)->Seat(current):setIsEmpty()
+
+Seat(current)->Screen(current):return
+deactivate Seat(current)
+
+Screen(current)->Timetable(current):return
+deactivate Screen(current)
+
+Timetable->CustomerSystem:return null
+deactivate Timetable
+
+CustomerSystem->Order:*createOrder(orderData, startTime, filmName, seatRow, seatColumn, screenType, screenId, filmDuration)
+activate Order
+
+Order->CustomerSystem:return
+deactivate CustomerSystem
+
+CustomerSystem->Customer:return
+deactivate CustomerSystem
+
+
+Customer->CustomerSystem:viewOrder()
+activate CustomerSystem
+
+CustomerSystem->Order:getOrder()
+activate Order
+Order->CustomerSystem:return
+deactivate CustomerSystem
+
+CustomerSystem->Customer:return
+deactivate CustomerSystem

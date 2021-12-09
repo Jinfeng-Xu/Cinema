@@ -1,0 +1,26 @@
+actor Customer
+control CustomerSystem
+entity Timetable, Order
+
+Customer->CustomerSystem:purchaseTickets()
+activate CustomerSystem
+
+CustomerSystem->Timetable(current):getTimetable()
+activate Timetable(current)
+Timetable->CustomerSystem:return null
+deactivate Timetable
+
+CustomerSystem->Customer:return
+deactivate CustomerSystem
+
+
+Customer->CustomerSystem:viewOrder()
+activate CustomerSystem
+
+CustomerSystem->Order(current):getOrder()
+activate Order(current)
+Order(current)->CustomerSystem:return
+deactivate CustomerSystem
+
+CustomerSystem->Customer:return
+deactivate CustomerSystem

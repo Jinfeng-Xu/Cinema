@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--绑定一个对应的Mapper/Dao接口-->
+<mapper namespace="com.group11.dao.FilmMapper">
+    <select id="getFilm" resultType="Film">
+        select * from film
+    </select>
+
+    <select id="getFilmById" resultType="Film">
+        select * from film where id = #{id}
+    </select>
+
+    <select id="getFilmByName" resultType="Film">
+        select * from film where name = #{name}
+    </select>
+
+    <insert id="addFilm" parameterType="Film">
+        insert into film(id, name, base64, duration, protagonist, releaseTime, info) values (#{id}, #{name}, #{base64Byte}, #{duration}, #{protagonist}, #{releaseTime}, #{info})
+    </insert>
+
+    <delete id="deleteFilm" parameterType="String">
+        delete from film where id = #{id}
+    </delete>
+
+    <select id="getFilmByTimeTableId" resultType="Film">
+        select film.* from film, timetable where timetable.id = #{tid} and timetable.filmId = film.id
+    </select>
+
+</mapper>

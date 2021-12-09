@@ -1,0 +1,25 @@
+actor Administrator
+control AdministratorSystem
+entity Film
+
+Administrator -> AdministratorSystem: SelectedFilm()
+activate AdministratorSystem
+
+AdministratorSystem -> Film(current): *getFilm()
+activate Film
+Film -> AdministratorSystem: return
+deactivate Film
+
+AdministratorSystem -> Administrator: return
+deactivate AdministratorSystem
+
+
+Administrator -> AdministratorSystem: deleteSelected()
+activate AdministratorSystem
+
+AdministratorSystem -> Film(selected): <<destory>>
+destory Film(selected)
+
+AdministratorSystem -> Administrator: return
+deactivate AdministratorSystem
+

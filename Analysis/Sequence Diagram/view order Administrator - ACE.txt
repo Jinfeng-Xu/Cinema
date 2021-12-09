@@ -1,0 +1,15 @@
+actor Administrator
+control AdministratorSystem
+entity Order
+
+Administrator->AdministratorSystem: viewOrder()
+activate AdministratorSystem
+
+AdministratorSystem->Order: getOrder()
+activate Order
+
+Order(current)->AdministratorSystem: return
+deactivate Order(current)
+
+AdministratorSystem->Administrator: return null
+deactivate AdministratorSystem
