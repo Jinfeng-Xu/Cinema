@@ -14,7 +14,7 @@ public class BookingServiceTest {
 
     @Test
     public void getTimeTable(){
-        TimeTable timeTable = bookingService.getTimeTable("122");
+        TimeTable timeTable = bookingService.getTimeTable("1");
         assert timeTable != null;
         assert timeTable instanceof TimeTable;
     }
@@ -90,7 +90,39 @@ public class BookingServiceTest {
 
     @Test
     public void createBill(){
-        boolean flag = bookingService.createBill("16", "888", "mzx");
+        boolean flag = bookingService.createBill("16", null, "mzx");
         assert flag = true;
+    }
+
+    @Test
+    public void getInitTimeTable(){
+        TimeTable timeTable = bookingService.getInitTimeTable("d0f54d9e-326f-4bf8-85a9-dcd30fa58030");
+        Seat[][] seats = timeTable.getSeats();
+        int length_r = seats.length;
+        int length_c = seats[0].length;
+        for (int i = 0; i < length_r; i++){
+            for (int j = 0; j < length_c; j++){
+                Seat seat = seats[i][j];
+                System.out.println(seat.toString());
+            }
+        }
+        System.out.println(timeTable.toString());
+    }
+
+
+    @Test
+    public void getBillByCustomerId(){
+        List<Bill> bills = bookingService.getBillByCustomerId("16");
+        for (Bill bill: bills){
+            assert bill != null;
+            assert bill instanceof  Bill;
+        }
+    }
+
+    @Test
+    public void getBillById(){
+        Bill bill = bookingService.getBillById("2");
+        assert bill != null;
+        assert bill instanceof  Bill;
     }
 }

@@ -6,17 +6,23 @@ import java.util.Date;
 
 @Alias("Film")
 public class Film {
+    // Defining private properties
     private String id;
     private String name;
-    // 图片转换的base64字符，取的时候用这个
-    private String base64;
-    // byte[]形式的base64格式,BLOB,存的时候用这个
+    // Image conversion base64 character, used when fetching this
+    private byte[] base64;
+    // Byte[] base64 format, BLOB, used when storing
     private byte[] base64Byte;
     private String duration;
     private String protagonist;
     private Date releaseTime;
     private String info;
 
+    // A constructor with no arguments
+    public Film() {
+    }
+
+    // A constructor with arguments
     public Film(String id, String name, byte[] base64Byte, String duration, String protagonist, Date releaseTime, String info) {
         this.id = id;
         this.name = name;
@@ -27,9 +33,7 @@ public class Film {
         this.info = info;
     }
 
-    public Film() {
-    }
-
+    // Getter and Setter
     public String getId() {
         return id;
     }
@@ -38,13 +42,13 @@ public class Film {
         this.id = id;
     }
 
-    public String getBase64() {
+
+    public byte[] getBase64() {
         return base64;
     }
 
-    public void setBase64(String base64) throws UnsupportedEncodingException {
+    public void setBase64(byte[] base64) {
         this.base64 = base64;
-        this.base64Byte = base64.getBytes("UTF8");
     }
 
     public byte[] getBase64Byte() {

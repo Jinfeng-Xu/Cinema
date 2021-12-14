@@ -4,20 +4,22 @@ import java.security.MessageDigest;
 
 public class PasswordUtils {
 
-    //十六进制下数字到字符的映射数组
+    // A hexadecimal array of numeral-to-character mappings
     private final static String[] hexDigits = {"0", "1", "2", "3", "4",
             "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
 
-    /** * 把inputString加密     */
+    /**  The inputString encryption    */
     public static String generatePassword(String inputString){
         return encodeByMD5(inputString);
     }
 
     /**
-     * 验证输入的密码是否正确
-     * @param password    加密后的密码
-     * @param inputString    输入的字符串
-     * @return    验证结果，TRUE:正确 FALSE:错误
+     * Verify that the entered password is correct
+     * @param password  Encrypted password
+     * @param inputString  Input string
+     * @return  Verify the result.
+     * TRUE: indicates that the result is correct.
+     * FALSE: indicates that the result is incorrect
      */
     public static boolean validatePassword(String password, String inputString){
         if(password.equals(encodeByMD5(inputString))){
@@ -46,7 +48,7 @@ public class PasswordUtils {
 
     /**
      * @param b
-     * @return 十六进制字节数组
+     * @return Hexadecimal byte array
      */
     private static String byteArrayToHexString(byte[] b){
         StringBuffer resultSb = new StringBuffer();
@@ -56,7 +58,7 @@ public class PasswordUtils {
         return resultSb.toString();
     }
 
-    /** 将一个字节转化成十六进制形式的字符串     */
+    /** Converts a byte to a hexadecimal string   */
     private static String byteToHexString(byte b){
         int n = b;
         if (n < 0)

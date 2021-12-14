@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group11.controller.AddFilmDialogController">
+   <children>
+      <Label layoutX="32.0" layoutY="70.0" text="duration" />
+      <Label layoutX="32.0" layoutY="99.0" text="protagonist" />
+      <Label layoutX="32.0" layoutY="129.0" text="releaseTime" />
+      <Label layoutX="32.0" layoutY="158.0" text="poster" />
+      <Label layoutX="32.0" layoutY="42.0" text="name" />
+      <TextField fx:id="nameTextFiled" layoutX="128.0" layoutY="38.0" prefHeight="23.0" prefWidth="186.0" />
+      <TextField fx:id="durationTextFiled" layoutX="128.0" layoutY="66.0" prefHeight="23.0" prefWidth="186.0" />
+      <TextField fx:id="protagonistTextFiled" layoutX="128.0" layoutY="95.0" prefHeight="23.0" prefWidth="186.0" />
+      <Label layoutX="32.0" layoutY="184.0" text="info" />
+      <TextArea fx:id="infoTextArea" layoutX="128.0" layoutY="184.0" prefHeight="53.0" prefWidth="186.0" />
+      <Button fx:id="posterChooseBtn" layoutX="128.0" layoutY="154.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="186.0" text="choose image" />
+      <Button fx:id="addFilmBtn" layoutX="317.0" layoutY="255.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="69.0" text="Add" />
+      <DatePicker fx:id="releaseTimeDatePicker" layoutX="127.0" layoutY="125.0" />
+   </children>
+</AnchorPane>

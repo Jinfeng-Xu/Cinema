@@ -8,7 +8,7 @@ import java.util.Observable;
 
 @Alias("TimeTable")
 public class TimeTable extends Observable implements Serializable {
-
+    // Defining private properties
     private String id;
     private Date startTime;
     private String filmId;
@@ -16,9 +16,11 @@ public class TimeTable extends Observable implements Serializable {
     private String price;
     private Seat[][] seats;
 
+    // A constructor with no arguments
     public TimeTable() {
     }
 
+    // A constructor with arguments
     public TimeTable(String id, Date startTime, String filmId, String screenId, String price) {
         this.id = id;
         this.startTime = startTime;
@@ -27,12 +29,15 @@ public class TimeTable extends Observable implements Serializable {
         this.price = price;
     }
 
+    // Set a seat from seats (Be observed)
     public void setSeat(Seat seat){
         this.seats[Integer.parseInt(seat.getSeatRow())][Integer.parseInt(seat.getSeatColumn())] = seat;
         setChanged();
         notifyObservers(seat);
+//        System.out.println("+++++++++++++++++++++++++++++++++++");
     }
 
+    // Getter and Setter
     public Seat[][] getSeats() {
         return seats;
     }

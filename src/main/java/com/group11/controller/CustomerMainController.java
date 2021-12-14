@@ -1,6 +1,7 @@
 package com.group11.controller;
 
 import com.group11.ViewAlter;
+import com.group11.service.CoreSystem;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,10 +14,10 @@ import java.util.ResourceBundle;
 
 public class CustomerMainController implements Initializable {
     private ViewAlter viewAlter = new ViewAlter();
+    private CoreSystem proxy = new CoreSystem();
     public void setApp(ViewAlter viewAlter) {
         this.viewAlter = viewAlter;
     }
-
     @FXML
     private Label userRoleLabel;
 
@@ -37,6 +38,8 @@ public class CustomerMainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        userRoleLabel.setText("Customer");
+        userNameLabel.setText(ViewAlter.customerName);
         backBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -47,6 +50,18 @@ public class CustomerMainController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 viewAlter.gotoResetPassword();
+            }
+        });
+        purchaseTicketsBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                viewAlter.gotoTimeTable();
+            }
+        });
+        checkBillsBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                viewAlter.gotoBillList();
             }
         });
     }

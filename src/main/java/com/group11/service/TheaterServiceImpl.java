@@ -1,18 +1,10 @@
 package com.group11.service;
 
-import com.group11.dao.BillMapper;
-import com.group11.dao.FilmMapper;
-import com.group11.dao.ScreenMapper;
-import com.group11.dao.TimeTableMapper;
-import com.group11.pojo.Bill;
-import com.group11.pojo.Film;
-import com.group11.pojo.Screen;
-import com.group11.pojo.TimeTable;
+import com.group11.dao.*;
+import com.group11.pojo.*;
 import com.group11.util.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
-import org.junit.Test;
 
-import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -65,13 +57,81 @@ public class TheaterServiceImpl implements TheaterService{
         return false;
     }
 
+    public Screen getScreenById(String id){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        ScreenMapper mapper = sqlSession.getMapper(ScreenMapper.class);
+        Screen screen = mapper.getScreenById(id);
+        sqlSession.close();
+        return screen;
+    }
+
     public TimeTable addTimeTable(Date startTime, String screenId, String filmId, String price){
         TimeTable timeTable = new TimeTable(UUID.randomUUID().toString(), startTime, filmId, screenId, price);
+        Screen screen = getScreenById(screenId);
+        String type = screen.getType();
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        TimeTableMapper mapper = sqlSession.getMapper(TimeTableMapper.class);
-        int count = mapper.addTimeTable(timeTable);
+        TimeTableMapper mapper_t = sqlSession.getMapper(TimeTableMapper.class);
+        SeatMapper mapper_s = sqlSession.getMapper(SeatMapper.class);
+        int count = mapper_t.addTimeTable(timeTable);
         if (count != 0){
             System.out.println("Add Successful");
+            int num = 1;
+            if (type.equals("small")){
+                for (int i = 0; i < 4; i++){
+                    for (int j = 0; j < 8; j++){
+                        Seat seat;
+                        if (num < 10){
+                            seat = new Seat(timeTable.getId() + "_0" + num, String.valueOf(i), String.valueOf(j), true, timeTable.getId());
+                        }else {
+                            seat = new Seat(timeTable.getId() + "_" + num, String.valueOf(i), String.valueOf(j), true, timeTable.getId());
+                        }
+                        int flag = mapper_s.addSeat(seat);
+                        if (flag != 0){
+                            System.out.println("Add Seat Successful");
+                        }else {
+                            System.out.println("Add Seat Failed");
+                        }
+                        num++;
+                    }
+                }
+            }else if(type.equals("middle")){
+                for (int i = 0; i < 5; i++){
+                    for (int j = 0; j < 10; j++){
+                        Seat seat;
+                        if (num < 10){
+                            seat = new Seat(timeTable.getId() + "_0" + num, String.valueOf(i), String.valueOf(j), true, timeTable.getId());
+                        }else {
+                            seat = new Seat(timeTable.getId() + "_" + num, String.valueOf(i), String.valueOf(j), true, timeTable.getId());
+                        }
+                        int flag = mapper_s.addSeat(seat);
+                        if (flag != 0){
+                            System.out.println("Add Seat Successful");
+                        }else {
+                            System.out.println("Add Seat Failed");
+                        }
+                        num++;
+                    }
+                }
+            }else if (type.equals("large")){
+                for (int i = 0; i < 6; i++){
+                    for (int j = 0; j < 12; j++){
+                        Seat seat;
+                        if (num < 10){
+                            seat = new Seat(timeTable.getId() + "_0" + num, String.valueOf(i), String.valueOf(j), true, timeTable.getId());
+                        }else {
+                            seat = new Seat(timeTable.getId() + "_" + num, String.valueOf(i), String.valueOf(j), true, timeTable.getId());
+                        }
+                        int flag = mapper_s.addSeat(seat);
+                        if (flag != 0){
+                            System.out.println("Add Seat Successful");
+                        }else {
+                            System.out.println("Add Seat Failed");
+                        }
+                        num++;
+                    }
+                }
+
+            }
             sqlSession.commit();
         }else {
             System.out.println("Add Unsuccessful");
@@ -126,4 +186,42 @@ public class TheaterServiceImpl implements TheaterService{
         return films;
     }
 
+    @Override
+    public boolean deleteSeats(String timeTableId) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SeatMapper mapper = sqlSession.getMapper(SeatMapper.class);
+        int i = mapper.deleteSeatByTimeTableId(timeTableId);
+        if(i!=0){
+            sqlSession.commit();
+            sqlSession.close();
+            System.out.println("OKOK");
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteTimeTable(String id) {
+        deleteSeats(id);
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        TimeTableMapper mapper = sqlSession.getMapper(TimeTableMapper.class);
+        int count = mapper.deleteTimeTable(id);
+        System.out.println("----------------" + count);
+        if( count != 0 ){
+            sqlSession.commit();
+            sqlSession.close();
+            System.out.println("OKOK");
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Bill getBillById(String id) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BillMapper mapper = sqlSession.getMapper(BillMapper.class);
+        Bill bill = mapper.getBillById(id);
+        sqlSession.close();
+        return bill;
+    }
 }

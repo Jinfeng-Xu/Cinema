@@ -1,12 +1,12 @@
 package com.group11.service;
 
+import com.group11.controller.SeatsUIController;
 import com.group11.dao.*;
 import com.group11.pojo.*;
 import com.group11.util.MybatisUtils;
 import com.group11.util.PersistentUtils;
 import org.apache.ibatis.session.SqlSession;
 
-import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -64,9 +64,9 @@ public class BookingServiceImpl implements BookingService{
     public List<Bill> getBills() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         BillMapper mapper = sqlSession.getMapper(BillMapper.class);
-        List<Bill> bill = mapper.getBill();
+        List<Bill> bills = mapper.getBill();
         sqlSession.close();
-        return bill;
+        return bills;
     }
 
     public boolean removeBill(String id) {
@@ -95,18 +95,86 @@ public class BookingServiceImpl implements BookingService{
         return timeTables;
     }
 
-    public boolean createBill(String customer_id, String timetable_id, String seat_id){
-        TimeTable timeTable = getTimeTable(timetable_id);
+    public boolean createBill(String customer_id, TimeTable timeTable, String seat_id){
+        Seat seat = getSeat(seat_id);
+        SeatsUIController observer = new SeatsUIController();
+        timeTable.addObserver(observer);
+        seat.setEmpty(false);
+        timeTable.setSeat(seat);
+        PersistentUtils.saveTimeTableToFile(timeTable, timeTable.getId());
         Film film = getFilm(timeTable.getFilmId());
         Screen screen = getScreen(timeTable.getScreenId());
-        Seat seat = getSeat(seat_id);
         Date date = new Date();
-        Bill bill = new Bill(UUID.randomUUID().toString(), date, timeTable.getStartTime(), film.getName(), screen.getType(), film.getDuration(), screen.getId(), customer_id, seat.getSeatRow(), seat.getSeatColumn());
+        Bill bill = new Bill(UUID.randomUUID().toString(), date, timeTable.getStartTime(), film.getName(), screen.getType(), film.getDuration(), screen.getId(), customer_id, seat.getSeatRow(), seat.getSeatColumn(), timeTable.getPrice());
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         BillMapper mapper = sqlSession.getMapper(BillMapper.class);
         int count = mapper.addBill(bill);
         sqlSession.commit();
         sqlSession.close();
         return count != 0;
+    }
+
+    public TimeTable getInitTimeTable(String timetableId){
+        List<Seat> seats = getSeats(timetableId);
+        TimeTable persistent = PersistentUtils.getTimeTableById(timetableId);
+        if (persistent == null){
+            TimeTable timeTable = getTimeTable(timetableId);
+            String screenId = timeTable.getScreenId();
+            Screen screen = getScreen(screenId);
+            Seat[][] table;
+            int num = 0;
+            if (screen.getType().equals("small")){
+                table = new Seat[4][8];
+                for (int i = 0; i < 4; i++){
+                    for (int j = 0; j < 8; j++){
+                        table[i][j] = seats.get(num);
+                        num++;
+                    }
+                }
+                timeTable.setSeats(table);
+                PersistentUtils.saveTimeTableToFile(timeTable, timetableId);
+                return timeTable;
+            }else if(screen.getType().equals("middle")){
+                table = new Seat[5][10];
+                for (int i = 0; i < 5; i++){
+                    for (int j = 0; j < 10; j++){
+                        table[i][j] = seats.get(num);
+                        num++;
+                    }
+                }
+                timeTable.setSeats(table);
+                PersistentUtils.saveTimeTableToFile(timeTable, timetableId);
+                return timeTable;
+            }else{
+                table = new Seat[6][12];
+                for (int i = 0; i < 6; i++){
+                    for (int j = 0; j < 12; j++){
+                        table[i][j] = seats.get(num);
+                        num++;
+                    }
+                }
+                timeTable.setSeats(table);
+                PersistentUtils.saveTimeTableToFile(timeTable, timetableId);
+                return timeTable;
+            }
+        }
+        return persistent;
+    }
+
+    public List<Bill> getBillByCustomerId(String customerId){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BillMapper mapper = sqlSession.getMapper(BillMapper.class);
+        List<Bill> bills = mapper.getBillByCustomerId(customerId);
+        sqlSession.close();
+        return bills;
+    }
+
+    @Override
+    public Bill getBillById(String id) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BillMapper mapper = sqlSession.getMapper(BillMapper.class);
+        Bill bill = mapper.getBillById(id);
+        sqlSession.close();
+        return bill;
     }
 }

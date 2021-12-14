@@ -4,19 +4,23 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("Customer")
 public class Customer {
+    // Defining private properties
     private String id;
     private String username;
     private String password;
 
+    // A constructor with no arguments
+    public Customer() {
+    }
+
+    // A constructor with arguments
     public Customer(String id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
     }
 
-    public Customer() {
-    }
-
+    // Getter and Setter
     public String getId() {
         return id;
     }

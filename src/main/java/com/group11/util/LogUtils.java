@@ -11,6 +11,10 @@ public class LogUtils {
     public static String root = System.getProperty("user.dir") + File.separatorChar + "src" + File.separatorChar +
             "main" + File.separatorChar;
 
+    /**
+     * Add logs to log file according to info
+     * @param info
+     */
     public static void logToFile(String info) {
         info = "[" + TimeUtils.getCurrentTimeStr() + "] " + info;
         FileWriter fw = null;

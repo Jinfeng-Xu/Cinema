@@ -18,9 +18,9 @@ public class TheaterServiceTest {
 
     @Test
     public void addFilm(){
-        File file = new File("/Users/86139/Desktop/bg.png");
+        File file = new File("/Users/xujinfengxu/Desktop/computer/素材库/2021.jpg");
         Date utilDate = new Date();
-        Film film = theaterService.addFilm("hello world", FormatUtils.transferFileToByte(file), "60", "Paul", utilDate, "hello");
+        Film film = theaterService.addFilm("he2llo world", FormatUtils.transferFileToByte(file), "60", "Paul", utilDate, "hello");
         assert film != null;
         assert film instanceof Film;
     }
@@ -35,6 +35,7 @@ public class TheaterServiceTest {
     @Test
     public void deleteFilm(){
         boolean flag = theaterService.deleteFilm("123");
+        System.out.println(flag);
     }
 
     @Test
@@ -43,7 +44,6 @@ public class TheaterServiceTest {
         TimeTable timeTable = theaterService.addTimeTable(utilDate,"3", "123", "188");
         assert timeTable != null;
         assert timeTable instanceof TimeTable;
-
     }
 
     @Test
@@ -87,5 +87,18 @@ public class TheaterServiceTest {
             assert film != null;
             assert film instanceof Film;
         }
+    }
+
+    @Test
+    public void deleteTimetable(){
+        boolean b = theaterService.deleteTimeTable("1");
+        assert b == true;
+    }
+
+    @Test
+    public void getBillById(){
+        Bill bill = theaterService.getBillById("2");
+        assert bill != null;
+        assert bill instanceof  Bill;
     }
 }

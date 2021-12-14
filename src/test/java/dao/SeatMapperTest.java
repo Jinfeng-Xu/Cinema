@@ -17,7 +17,7 @@ public class SeatMapperTest {
     public void getSeatByTimeTableId(){
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SeatMapper mapper = sqlSession.getMapper(SeatMapper.class);
-        List<Seat> seats = mapper.getSeatByTimeTableId("1");
+        List<Seat> seats = mapper.getSeatByTimeTableId("9070efaf-238d-43e7-b521-d143d0410fb3");
         for (Seat seat : seats) {
             System.out.println(seat);
         }
@@ -50,7 +50,7 @@ public class SeatMapperTest {
     public void addSeat(){
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         SeatMapper mapper = sqlSession.getMapper(SeatMapper.class);
-        int count = mapper.addSeat(new Seat("mzx2", "1", "2",  true, "1"));
+        int count = mapper.addSeat(new Seat("mzx11", "1", "2",  true, "1"));
         if(count > 0) System.out.println("ok");
         sqlSession.commit();
         sqlSession.close();

@@ -10,7 +10,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group11.controller.AdministratorMainController">
    <children>
       <Button fx:id="checkBillsBtn" layoutX="295.0" layoutY="276.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="240.0" text="Check Bills" />
-      <Button fx:id="changeFilmBtn" layoutX="295.0" layoutY="200.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="240.0" text="Change Film" />
+      <Button fx:id="editFilmListBtn" layoutX="295.0" layoutY="200.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="240.0" text="Edit Film" />
       <Label fx:id="userRoleLabel" layoutX="155.0" layoutY="168.0" prefHeight="32.0" prefWidth="80.0" text="Label" />
       <Label layoutX="59.0" layoutY="168.0" prefHeight="32.0" prefWidth="80.0" text="User Role:" />
       <Label fx:id="userNameLabel" layoutX="155.0" layoutY="117.0" prefHeight="32.0" prefWidth="80.0" text="Label" />
@@ -20,7 +20,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="changeTimetableBtn" layoutX="295.0" layoutY="124.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="240.0" text="Change Timetable" />
+      <Button fx:id="editTimetableBtn" layoutX="295.0" layoutY="124.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="240.0" text="Edit Timetable" />
       <Button fx:id="backBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="55.0" text="BACK" />
       <Button fx:id="resetPasswordBtn" layoutX="458.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="129.0" text="reset password" />
    </children>

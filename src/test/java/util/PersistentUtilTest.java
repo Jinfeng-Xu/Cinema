@@ -2,6 +2,7 @@ package util;
 
 import com.group11.dao.TimeTableMapper;
 import com.group11.pojo.Screen;
+import com.group11.pojo.Seat;
 import com.group11.pojo.TimeTable;
 import com.group11.util.MybatisUtils;
 import com.group11.util.PersistentUtils;
@@ -34,7 +35,7 @@ public class PersistentUtilTest {
 
     @Test
     public void getTimeTableById(){
-        TimeTable timeTable = PersistentUtils.getTimeTableById("1");
+        TimeTable timeTable = PersistentUtils.getTimeTableById("d0f54d9e-326f-4bf8-85a9-dcd30fa58030");
         System.out.println(timeTable.toString());
     }
 
@@ -52,6 +53,12 @@ public class PersistentUtilTest {
     public void changePersistentTimeTable(){
         TimeTable timeTable = PersistentUtils.getTimeTableById("1");
         System.out.println(timeTable.toString());
+        Seat seat1 = new Seat("t1","1","1",false, "1");
+        Seat seat2 = new Seat("t2","2","2",false, "1");
+        Seat[][] seats = new Seat[2][1];
+        seats[0][0] = seat1;
+        seats[1][0] = seat2;
+        timeTable.setSeats(seats);
         timeTable.setPrice("4");
         PersistentUtils.saveTimeTableToFile(timeTable, "1");
         TimeTable timeTable2 = PersistentUtils.getTimeTableById("1");

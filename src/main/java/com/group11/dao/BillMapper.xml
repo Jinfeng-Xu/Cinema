@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!--绑定一个对应的Mapper/Dao接口-->
+<!--Bind a corresponding Mapper/Dao interface-->
 <mapper namespace="com.group11.dao.BillMapper">
     <select id="getBill" resultType="Bill">
         select * from bill
@@ -14,13 +14,17 @@
     </select>
 
     <insert id="addBill" parameterType="Bill">
-        insert into bill(id, billDate, startTime, filmName, screenType, filmDuration, screenId, customerId, seatRow, seatColumn)
-        values (#{id}, #{billDate}, #{startTime}, #{filmName}, #{screenType}, #{filmDuration}, #{screenId}, #{customerId}, #{seatRow}, #{seatColumn})
+        insert into bill(id, billDate, startTime, filmName, screenType, filmDuration, screenId, customerId, seatRow, seatColumn, price)
+        values (#{id}, #{billDate}, #{startTime}, #{filmName}, #{screenType}, #{filmDuration},
+        #{screenId}, #{customerId}, #{seatRow}, #{seatColumn}, #{price})
     </insert>
 
     <delete id="deleteBill" parameterType="String">
         delete from bill where id = #{id}
     </delete>
 
+    <select id="getBillByCustomerId" resultType="Bill">
+        select * from bill where customerId = #{customerId}
+    </select>
 
 </mapper>

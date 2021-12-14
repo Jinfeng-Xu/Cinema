@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Random;
 
 public class BillMapperTest {
 
@@ -38,7 +39,10 @@ public class BillMapperTest {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         BillMapper mapper = sqlSession.getMapper(BillMapper.class);
         java.util.Date utilDate = new java.util.Date(); //获取当前时间
-        int count = mapper.addBill(new Bill("12", utilDate, utilDate, "装弹比赛", "8bq", "4", "3", "2a079dbd-2d16-498c-9970-5958036e59e0", "3", "4"));
+//        for(int i = 0; i < 20; i ++){
+//            int count = mapper.addBill(new Bill(String.valueOf(i), utilDate, utilDate, "222", "middle", "4", "3", "16", String.valueOf(i), String.valueOf(i), String.valueOf(Math.random()*100)));
+//        }
+        int count = mapper.addBill(new Bill("12", utilDate, utilDate, "222", "8bq", "4", "3", "16", "3", "4", "2"));
         if(count > 0)
             System.out.println("OKK");
         sqlSession.commit();
@@ -54,6 +58,17 @@ public class BillMapperTest {
             System.out.println("Successful!");
         }
         sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Test
+    public void getBillByCustomerId(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BillMapper mapper = sqlSession.getMapper(BillMapper.class);
+        List<Bill> bills = mapper.getBillByCustomerId("16");
+        for (Bill bill : bills) {
+            System.out.println(bill.toString());
+        }
         sqlSession.close();
     }
 }

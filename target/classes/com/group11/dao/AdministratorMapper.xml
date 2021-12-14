@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!--绑定一个对应的Mapper/Dao接口-->
+<!--Bind a corresponding Mapper/Dao interface-->
 <mapper namespace="com.group11.dao.AdministratorMapper">
     <select id="getAdministratorById" resultType="Administrator">
         select * from administrator where id = #{id}

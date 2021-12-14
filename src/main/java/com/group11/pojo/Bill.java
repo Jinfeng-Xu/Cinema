@@ -6,17 +6,20 @@ import java.util.Date;
 
 @Alias("Bill")
 public class Bill {
-
+    // Defining private properties
     private String id;
     private Date billDate, startTime;
     private String filmName, screenType, filmDuration;
     private String screenId, customerId;
     private String seatRow, seatColumn;
+    private String price;
 
+    // A constructor with no arguments
     public Bill() {
     }
 
-    public Bill(String id, Date billDate, Date startTime, String filmName, String screenType, String filmDuration, String screenId, String customerId, String seatRow, String seatColumn) {
+    // A constructor with arguments
+    public Bill(String id, Date billDate, Date startTime, String filmName, String screenType, String filmDuration, String screenId, String customerId, String seatRow, String seatColumn, String price) {
         this.id = id;
         this.billDate = billDate;
         this.startTime = startTime;
@@ -27,8 +30,10 @@ public class Bill {
         this.customerId = customerId;
         this.seatRow = seatRow;
         this.seatColumn = seatColumn;
+        this.price = price;
     }
 
+    // Getter and Setter
     public String getId() {
         return id;
     }
@@ -109,9 +114,17 @@ public class Bill {
         this.seatColumn = seatColumn;
     }
 
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
-        return "Order{" +
+        return "Bill{" +
                 "id='" + id + '\'' +
                 ", billDate=" + billDate +
                 ", startTime=" + startTime +
@@ -122,6 +135,7 @@ public class Bill {
                 ", customerId='" + customerId + '\'' +
                 ", seatRow='" + seatRow + '\'' +
                 ", seatColumn='" + seatColumn + '\'' +
+                ", price='" + price + '\'' +
                 '}';
     }
 }

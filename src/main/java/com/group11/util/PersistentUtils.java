@@ -10,14 +10,13 @@ public class PersistentUtils {
             "main" + File.separatorChar + "persistent" +  File.separatorChar;
 
     /*
-     * 将对象保存到文件中
+     * Save the object to a file
      */
     public static void saveObjToFile(Object p, String fileName){
         try {
-            //写对象流的对象
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName));
-            oos.writeObject(p);                 //将Person对象p写入到oos中
-            oos.close();                        //关闭文件流
+            oos.writeObject(p);
+            oos.close();
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -28,13 +27,13 @@ public class PersistentUtils {
     }
 
     /*
-     * 从文件中读出对象，并且返回对象
+     * Read object from file and return object
      */
     public static Object getObjFromFile(String fileName){
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName));
-            Object object = ois.readObject();              //读出对象
-            return object;                                       //返回对象
+            Object object = ois.readObject();
+            return object;
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -49,13 +48,13 @@ public class PersistentUtils {
     }
 
     /*
-     * 通过screen id get Persistent Screen
+     * Get Persistent Screen object by screen_id
      */
     public static TimeTable getTimeTableById(String timeTableId){
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(root + "TimeTable" + timeTableId + ".txt"));
-            Object object = ois.readObject();              //读出对象
-            return (TimeTable) object;                                       //返回对象
+            Object object = ois.readObject();
+            return (TimeTable) object;
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             return null;
@@ -69,14 +68,13 @@ public class PersistentUtils {
     }
 
     /*
-     * 将Screen保存到文件中
+     * Save the Screen object to a file
      */
     public static void saveTimeTableToFile(TimeTable timeTable, String timeTableId){
         try {
-            //写对象流的对象
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(root + "TimeTable" + timeTableId + ".txt"));
-            oos.writeObject(timeTable);                 //将Person对象p写入到oos中
-            oos.close();                        //关闭文件流
+            oos.writeObject(timeTable);
+            oos.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

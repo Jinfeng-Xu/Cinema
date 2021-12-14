@@ -10,11 +10,11 @@ public class LoginServiceImplTest {
 
     @Test
     public void login(){
-        String username = "ZZY";
-        String password = "password";
+        String username = "111111";
+        String password = "111111";
         boolean type = true;
-        int num = loginService.login(username, password, type);
-        assert num == 0 || num == 1 || num == 2;
+        Object login = loginService.login(username, password, type);
+        assert login != null;
     }
 
     // 用户名字母数字下划线，密码字母数字，长度均小于17

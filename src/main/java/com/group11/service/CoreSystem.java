@@ -108,6 +108,8 @@ public class CoreSystem implements BookingService, TheaterService, LoginService{
         return bills;
     }
 
+
+
     public boolean removeBill(String id) {
         boolean remove = bsi.removeBill(id);
         String info = "Remove Bill";
@@ -241,8 +243,35 @@ public class CoreSystem implements BookingService, TheaterService, LoginService{
         return films;
     }
 
-    public boolean createBill(String customer_id, String timetable_id, String seat_id) {
-        boolean create = bsi.createBill(customer_id, timetable_id, seat_id);
+    @Override
+    public boolean deleteSeats(String timeTableId) {
+        boolean b = tsi.deleteSeats(timeTableId);
+        String information = "Delete Seats";
+        if (!b){
+            information += " Failed";
+        }else {
+            information += " Successful";
+        }
+        LogUtils.logToFile(information);
+        return b;
+    }
+
+
+    @Override
+    public boolean deleteTimeTable(String id) {
+        boolean b = tsi.deleteTimeTable(id);
+        String information = "Delete Timetable";
+        if (!b){
+            information += " Failed";
+        }else {
+            information += " Successful";
+        }
+        LogUtils.logToFile(information);
+        return b;
+    }
+
+    public boolean createBill(String customer_id, TimeTable timeTable, String seat_id) {
+        boolean create = bsi.createBill(customer_id, timeTable, seat_id);
         String information = "Create Bill";
         if (!create){
             information += " Failed";
@@ -253,18 +282,59 @@ public class CoreSystem implements BookingService, TheaterService, LoginService{
         return create;
     }
 
-    public int login(String username, String password, boolean type) {
-        int num = ls.login(username, password, type);
+    @Override
+    public TimeTable getInitTimeTable(String timetableId) {
+        TimeTable timeTable = bsi.getInitTimeTable(timetableId);
+        String info = "Get TimeTable With Seats";
+        if (timeTable == null){
+            info += " Failed";
+        }else {
+            info += " Successful";
+        }
+        LogUtils.logToFile(info);
+        return timeTable;
+
+    }
+
+    @Override
+    public List<Bill> getBillByCustomerId(String customerId) {
+        List<Bill> bills = bsi.getBillByCustomerId(customerId);
+        String info = "Get Bills By CustomerId";
+        if (bills == null){
+            info += " Failed";
+        }else {
+            info += " Successful";
+        }
+        LogUtils.logToFile(info);
+        return bills;
+    }
+
+    @Override
+    public Bill getBillById(String id) {
+        Bill bill = bsi.getBillById(id);
+        String info = "Get Bill By Id";
+        if (bill == null){
+            info += " Failed";
+        }else {
+            info += " Successful";
+        }
+        LogUtils.logToFile(info);
+        return bill;
+    }
+
+
+    public Object login(String username, String password, boolean type) {
+        Object role = ls.login(username, password, type);
         String info = username + " login";
-        if (num == 0){
+        if (role instanceof Customer){
             info += " as customer";
-        }else if (num == 1){
+        }else if (role instanceof Administrator){
             info += " as administrator";
         }else {
             info += "failed";
         }
         LogUtils.logToFile(info);
-        return num;
+        return role;
     }
 
     public int register(String username, String password, String confirm_password, boolean type) {
@@ -306,4 +376,5 @@ public class CoreSystem implements BookingService, TheaterService, LoginService{
         LogUtils.logToFile(info);
         return flag;
     }
+
 }

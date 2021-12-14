@@ -7,33 +7,31 @@ import com.group11.pojo.Customer;
 import com.group11.util.MybatisUtils;
 import com.group11.util.PasswordUtils;
 import org.apache.ibatis.session.SqlSession;
-import sun.security.util.Password;
 
-import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class LoginServiceImpl implements LoginService{
 
-    public int login(String username, String password, boolean type){
+    public Object login(String username, String password, boolean type){
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         if (type){
             CustomerMapper mapper_c = sqlSession.getMapper(CustomerMapper.class);
             Customer customer = mapper_c.getCustomerByUserName(username);
             sqlSession.close();
             if (customer != null && PasswordUtils.validatePassword(customer.getPassword(), password)){
-                return 0;
+                return customer;
             }else {
-                return 2;
+                return null;
             }
         }else {
             AdministratorMapper mapper_a = sqlSession.getMapper(AdministratorMapper.class);
             Administrator administrator = mapper_a.getAdministratorByUserName(username);
             sqlSession.close();
             if (administrator != null && PasswordUtils.validatePassword(administrator.getPassword(), password)){
-                return 1;
+                return administrator;
             }else {
-                return 2;
+                return null;
             }
         }
     }
@@ -43,20 +41,24 @@ public class LoginServiceImpl implements LoginService{
     // Customer注册成功返回0, Administrator注册成功返回1, 注册失败返回2
     public int register(String username, String password, String confirm_password, boolean type){
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        CustomerMapper mapper_c = sqlSession.getMapper(CustomerMapper.class);
-        AdministratorMapper mapper_a = sqlSession.getMapper(AdministratorMapper.class);
-        Customer customer = mapper_c.getCustomerByUserName(username);
-        Administrator administrator = mapper_a.getAdministratorByUserName(username);
-        sqlSession.close();
-        if (isUsername(username) && password.equals(confirm_password) && isPassword(password) && customer == null && administrator == null){
-            if (type){
-                registerCustomer(username, password);
-                return 0;
-            }else {
-                registerAdministrator(username, password);
-                return 1;
+        if(isUsername(username) && password.equals(confirm_password) && isPassword(password))
+            if(type){
+                CustomerMapper mapper_c = sqlSession.getMapper(CustomerMapper.class);
+                Customer customer = mapper_c.getCustomerByUserName(username);
+                if(customer == null){
+                    registerCustomer(username, password);
+                    return 0;
+                }
             }
-        }
+            else{
+                AdministratorMapper mapper_a = sqlSession.getMapper(AdministratorMapper.class);
+                Administrator administrator = mapper_a.getAdministratorByUserName(username);
+                if(administrator == null){
+                    registerAdministrator(username, password);
+                    return 1;
+                }
+            }
+        sqlSession.close();
         return 2;
     }
 

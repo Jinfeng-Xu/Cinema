@@ -4,18 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-<!--    引入外部配置文件-->
+<!--    Import external configuration files-->
     <properties resource="db.properties">
     </properties>
      
     <settings>
-<!--        标准日志工厂实现-->
-<!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
-<!--        LOG4j日志实现-->
+<!--        LOG4j Impl-->
         <setting name="logImpl" value="LOG4J"/>
     </settings>
 
-<!--    给实体类起别名-->
+<!--    Alias for pojo-->
     <typeAliases>
         <typeAlias type="com.group11.pojo.Customer" alias="Customer"/>
         <typeAlias type="com.group11.pojo.Administrator" alias="Administrator"/>

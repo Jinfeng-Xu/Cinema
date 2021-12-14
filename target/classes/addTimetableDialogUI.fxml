@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group11.controller.AddTimetableDialogController">
+   <children>
+      <Label layoutX="32.0" layoutY="70.0" text="screenId" />
+      <Label layoutX="32.0" layoutY="99.0" text="filmName" />
+      <Label layoutX="32.0" layoutY="129.0" text="startTime" />
+      <Label layoutX="32.0" layoutY="158.0" text="price" />
+      <Button fx:id="addTimetableBtn" layoutX="317.0" layoutY="255.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="69.0" text="Add" />
+      <DatePicker fx:id="startTimeDatePicker" layoutX="127.0" layoutY="125.0" />
+      <TextField fx:id="priceTextFiled" layoutX="127.0" layoutY="154.0" prefHeight="23.0" prefWidth="186.0" />
+      <ComboBox fx:id="screenIdComboBox" layoutX="128.0" layoutY="66.0" prefHeight="23.0" prefWidth="186.0" />
+      <ComboBox fx:id="filmIdComboBox" layoutX="128.0" layoutY="95.0" prefHeight="23.0" prefWidth="186.0" />
+   </children>
+</AnchorPane>

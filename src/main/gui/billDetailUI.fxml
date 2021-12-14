@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group11.controller.BillDetailController">
+   <children>
+      <TextField fx:id="dateTextField" editable="false" layoutX="297.0" layoutY="105.0" prefHeight="23.0" prefWidth="199.0" />
+      <TextField fx:id="filmNameTextField" editable="false" layoutX="297.0" layoutY="167.0" prefHeight="23.0" prefWidth="199.0" />
+      <TextField fx:id="screenTypeTextField" editable="false" layoutX="402.0" layoutY="228.0" prefHeight="23.0" prefWidth="96.0" />
+      <TextField fx:id="screenIDTextField" editable="false" layoutX="297.0" layoutY="228.0" prefHeight="23.0" prefWidth="96.0" />
+      <TextField fx:id="columnTextField" editable="false" layoutX="335.0" layoutY="317.0" prefHeight="30.0" prefWidth="59.0" />
+      <Label layoutX="341.0" layoutY="283.0" text="Column:" />
+      <TextField fx:id="rowTextField" editable="false" layoutX="208.0" layoutY="317.0" prefHeight="30.0" prefWidth="59.0" />
+      <Label layoutX="224.0" layoutY="283.0" text="Row:" />
+      <Label layoutX="97.0" layoutY="232.0" text="Screen Information:" />
+      <Label layoutX="121.0" layoutY="171.0" text="Film Name:" />
+      <Label layoutX="139.0" layoutY="109.0" text="Date:" />
+      <Label layoutX="246.0" layoutY="46.0" style="-fx-font-size: 24;" text="Bill Detail" />
+      <Button fx:id="backBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" text="BACK" />
+      <Button fx:id="removeBtn" layoutX="505.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="81.0" text="Remove" />
+   </children>
+</AnchorPane>

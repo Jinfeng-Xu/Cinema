@@ -4,21 +4,21 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("Screen")
 public class Screen {
-
+    // Defining private properties
     private String id;
     private String type;
 
+    // A constructor with no arguments
     public Screen() {
     }
 
+    // A constructor with arguments
     public Screen(String id, String type) {
         this.id = id;
         this.type = type;
     }
 
-
-
-
+    // Getter and Setter
     public String getId() {
         return id;
     }

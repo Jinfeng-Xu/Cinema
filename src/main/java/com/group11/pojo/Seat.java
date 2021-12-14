@@ -2,16 +2,23 @@ package com.group11.pojo;
 
 import org.apache.ibatis.type.Alias;
 
+import java.io.Serializable;
+
 
 @Alias("Seat")
-public class Seat{
-
+public class Seat implements Serializable {
+    // Defining private properties
     private String id;
     private String seatRow;
     private String seatColumn;
     private boolean isEmpty;
     private String timeTableId;
 
+    // A constructor with no arguments
+    public Seat() {
+    }
+
+    // A constructor with arguments
     public Seat(String id, String seatRow, String seatColumn, boolean isEmpty, String timeTableId) {
         this.id = id;
         this.seatRow = seatRow;
@@ -20,9 +27,7 @@ public class Seat{
         this.timeTableId = timeTableId;
     }
 
-    public Seat() {
-    }
-
+    // Getter and Setter
     public String getId() {
         return id;
     }
